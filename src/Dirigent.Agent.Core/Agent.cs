@@ -30,7 +30,7 @@ namespace Dirigent.Agent.Core
         {
             LauncherFactory launcherFactory = new LauncherFactory();
             AppInitializedDetectorFactory appInitializedDetectorFactory = new AppInitializedDetectorFactory();
-            this.localOps = new LocalOperations(machineId, launcherFactory, appInitializedDetectorFactory);
+            this.localOps = new LocalOperations( machineId, launcherFactory, appInitializedDetectorFactory);
             this.netOps = new NetworkProxy( machineId, client, localOps );
             this.proxy = new DirigentControlSwitchableProxy(selectProxyImpl(client.IsConnected()));
             this.client = client;

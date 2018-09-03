@@ -74,6 +74,7 @@
     <Compile Include="CommandRepository.cs" />
     <Compile Include="DictionaryUtils.cs" />
     <Compile Include="DirigentControlCommands.cs" />
+    <Compile Include="FilePayload.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="MachineConfigHelper.cs" />
     <Compile Include="Configuration.cs" />

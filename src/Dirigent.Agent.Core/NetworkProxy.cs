@@ -20,6 +20,7 @@ namespace Dirigent.Agent.Core
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         string machineId;
+
         IClient client;
         IDirigentControl localOps;
 
@@ -187,6 +188,30 @@ namespace Dirigent.Agent.Core
                 var m = msg as RemoteOperationErrorMessage;
                 throw new RemoteOperationErrorException(m.Requestor, m.Message, m.Attributes);
             }
+            else
+            if (t == typeof(ProblemSnapshotRequest))
+            {
+                var m = msg as ProblemSnapshotRequest;
+                localOps.OnProblemSnapshotRequest(
+                    m.RequestUuid,
+                    m.MachineId,
+                    m.ApplicationType,
+                    m.ApplicationId,
+                    m.Options
+                );
+            }
+            else
+            if (t == typeof(ProblemSnapshotResponse))
+            {
+                var m = msg as ProblemSnapshotResponse;
+                localOps.OnProblemSnapshotResponse(
+                    m.RequestUuid,
+                    m.MachineId,
+                    m.ApplicationType,
+                    m.ApplicationId,
+                    m.Files
+                );
+            }
         }
 
         void processIncomingMessages()
@@ -312,6 +337,40 @@ namespace Dirigent.Agent.Core
         public void KillApp(AppIdTuple appIdTuple)
         {
             client.BroadcastMessage( new KillAppMessage( appIdTuple ) );
+        }
+
+        public void OnProblemSnapshotRequest(
+            string RequestUuid,
+            String MachineId,
+            String ApplicationType,
+            String ApplicationId,
+            Dictionary<String, String> Options
+        )
+        {
+            localOps.OnProblemSnapshotRequest(
+                RequestUuid,
+                MachineId,
+                ApplicationType,
+                ApplicationId,
+                Options
+            );
+        }
+
+        public void OnProblemSnapshotResponse(
+            string RequestUuid,
+            String MachineId,
+            String ApplicationType,
+            String ApplicationId,
+            List<FilePayload> Files
+        )
+        {
+            localOps.OnProblemSnapshotResponse(
+                RequestUuid,
+                MachineId,
+                ApplicationType,
+                ApplicationId,
+                Files
+            );
         }
     }
 }

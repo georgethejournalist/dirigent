@@ -98,13 +98,14 @@ namespace Dirigent.Agent.TrayApp.Properties {
             }
         }
         
+        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string IsMaster {
             get {
                 return ((string)(this["IsMaster"]));
-            }
-        }
+    }
+}
     }
 }
