@@ -91,6 +91,7 @@
     <Compile Include="Messages.cs" />
     <Compile Include="MyCommandRepo.cs" />
     <Compile Include="PlanState.cs" />
+    <Compile Include="ProblemSnapshot.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedXmlConfigReader.cs" />

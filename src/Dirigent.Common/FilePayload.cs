@@ -13,9 +13,21 @@ namespace Dirigent.Common
     public struct FilePayload
     {
         [DataMember]
-        public string FileName; // name of the file
+        public string FullPath; // name of the file; full path
 
         [DataMember]
-        public byte[] Content; // data content of the file
+        public List<string> Types; // types as defined for the concrete file in the plan
+
+        [DataMember]
+        public UInt64 Size; // types as defined for the concrete file in the plan
+
+        [DataMember]
+        public DateTime LastWriteTime; // types as defined for the concrete file in the plan
+
+        [DataMember]
+        public string UNCPath; // path to access the file from the asking computer (used instead of file content for large files)
+
+        [DataMember]
+        public byte[] Content; // data content of the file (usable just for small files up to several KBytes because of limited message size)
     };
 }

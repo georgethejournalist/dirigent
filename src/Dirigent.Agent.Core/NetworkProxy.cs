@@ -189,28 +189,10 @@ namespace Dirigent.Agent.Core
                 throw new RemoteOperationErrorException(m.Requestor, m.Message, m.Attributes);
             }
             else
-            if (t == typeof(ProblemSnapshotRequest))
+            if (t == typeof(TakeProblemSnapshotMessage))
             {
-                var m = msg as ProblemSnapshotRequest;
-                localOps.OnProblemSnapshotRequest(
-                    m.RequestUuid,
-                    m.MachineId,
-                    m.ApplicationType,
-                    m.ApplicationId,
-                    m.Options
-                );
-            }
-            else
-            if (t == typeof(ProblemSnapshotResponse))
-            {
-                var m = msg as ProblemSnapshotResponse;
-                localOps.OnProblemSnapshotResponse(
-                    m.RequestUuid,
-                    m.MachineId,
-                    m.ApplicationType,
-                    m.ApplicationId,
-                    m.Files
-                );
+                var m = msg as TakeProblemSnapshotMessage;
+                localOps.OnProblemSnapshotRequest( m.Request );
             }
         }
 
@@ -339,38 +321,9 @@ namespace Dirigent.Agent.Core
             client.BroadcastMessage( new KillAppMessage( appIdTuple ) );
         }
 
-        public void OnProblemSnapshotRequest(
-            string RequestUuid,
-            String MachineId,
-            String ApplicationType,
-            String ApplicationId,
-            Dictionary<String, String> Options
-        )
+        public void OnProblemSnapshotRequest( ProblemSnapshotRequest req )
         {
-            localOps.OnProblemSnapshotRequest(
-                RequestUuid,
-                MachineId,
-                ApplicationType,
-                ApplicationId,
-                Options
-            );
-        }
-
-        public void OnProblemSnapshotResponse(
-            string RequestUuid,
-            String MachineId,
-            String ApplicationType,
-            String ApplicationId,
-            List<FilePayload> Files
-        )
-        {
-            localOps.OnProblemSnapshotResponse(
-                RequestUuid,
-                MachineId,
-                ApplicationType,
-                ApplicationId,
-                Files
-            );
+            localOps.OnProblemSnapshotRequest( req );
         }
     }
 }

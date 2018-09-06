@@ -67,6 +67,7 @@ namespace Dirigent.Common
                 KillTree = (string)e.Attribute("KillTree"),
                 WindowStyle = (string)e.Attribute("WindowStyle"),
                 WindowPos = e.Elements("WindowPos"),
+                ProblemSnapshots = e.Elements("ProblemSnapshots"),
                 Env = e.Element("Env"),
                 InitDetectors = e.Element("InitDetectors") != null ? e.Element("InitDetectors").Elements() : null,
             };
@@ -114,6 +115,14 @@ namespace Dirigent.Common
                 foreach( var elem in x.WindowPos )
                 {
                     a.WindowPosXml.Add( elem.ToString() );
+                }
+            }
+
+            if( x.ProblemSnapshots != null )
+            {
+                foreach( var elem in x.ProblemSnapshots )
+                {
+                    a.ProblemSnapshotsXml.Add( elem.ToString() );
                 }
             }
 

@@ -86,21 +86,7 @@ namespace Dirigent.Common
         // kill specified app
         void KillApp(AppIdTuple appIdTuple);
 
-        void OnProblemSnapshotRequest(
-            string RequestUuid,
-            String MachineId,
-            String ApplicationType,
-            String ApplicationId,
-            Dictionary<String, String> Options
-        );
-
-        void OnProblemSnapshotResponse(
-            string RequestUuid,
-            String MachineId,
-            String ApplicationType,
-            String ApplicationId,
-            List<FilePayload> Files
-        );
+        void OnProblemSnapshotRequest( ProblemSnapshotRequest req );
     }
 
 }

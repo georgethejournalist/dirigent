@@ -74,6 +74,12 @@ namespace Dirigent.Common
         public List<string> WindowPosXml = new List<string>();
 
         /// <summary>
+        /// list of all <ProblemSnaphots /> XML sections as string (to be parsed later by specific app watcher code)
+        /// </summary>
+        [DataMember]
+        public List<string> ProblemSnapshotsXml = new List<string>();
+
+        /// <summary>
         /// list of environment vars to set (in addition to inherited system environemnt)
         /// </summary>
         [DataMember]
@@ -122,6 +128,7 @@ namespace Dirigent.Common
                 ) &&
                 this.WindowStyle == other.WindowStyle &&
                 this.WindowPosXml.SequenceEqual( other.WindowPosXml ) &&
+                this.ProblemSnapshotsXml.SequenceEqual( other.ProblemSnapshotsXml ) &&
 				this.EnvVarsToSet.DictionaryEqual( other.EnvVarsToSet ) &&
 				this.EnvVarPathToPrepend == other.EnvVarPathToPrepend &&
 				this.EnvVarPathToAppend == other.EnvVarPathToAppend &&

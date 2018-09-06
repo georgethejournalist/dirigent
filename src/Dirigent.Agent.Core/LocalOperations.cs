@@ -607,24 +607,7 @@ namespace Dirigent.Agent.Core
 
 		}
 
-        public void OnProblemSnapshotRequest(
-            string RequestUuid,
-            String MachineId,
-            String ApplicationType,
-            String ApplicationId,
-            Dictionary<String, String> Options
-        )
-        {
-            // TODO
-        }
-
-        public void OnProblemSnapshotResponse(
-            string RequestUuid,
-            String MachineId,
-            String ApplicationType,
-            String ApplicationId,
-            List<FilePayload> Files
-        )
+        public void OnProblemSnapshotRequest( ProblemSnapshotRequest req )
         {
             // TODO
         }

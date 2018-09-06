@@ -130,12 +130,12 @@ namespace Dirigent.Agent.Gui
         {
             if (callbacks.isConnectedDeleg())
             {
-                toolStripStatusLabel1.Text = "Connected.";
+                toolStripStatusLabel1.Text = "Connected to Master.";
 
             }
             else
             {
-                toolStripStatusLabel1.Text = "Disconnected.";
+                toolStripStatusLabel1.Text = "Disconnected from Master.";
             }
 
         }

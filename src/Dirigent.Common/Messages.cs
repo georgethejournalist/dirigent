@@ -26,8 +26,7 @@ namespace Dirigent.Net
     [KnownType(typeof(RestartPlanMessage))]
     [KnownType(typeof(CurrentPlanMessage))]
     [KnownType(typeof(PlanRepoMessage))]
-    [KnownType(typeof(ProblemSnapshotRequest))]
-    [KnownType(typeof(ProblemSnapshotResponse))]
+    [KnownType(typeof(TakeProblemSnapshotMessage))]
     public class Message
     {
         [DataMember]
@@ -249,79 +248,19 @@ namespace Dirigent.Net
     }
 
     /// <summary>
-    /// Master tells new client about existing plans
+    /// We want the clients to take a snapshot of important files
     /// </summary>
     [DataContract]
-    public class ProblemSnapshotRequest : Message
+    public class TakeProblemSnapshotMessage : Message
     {
-
-        /// <summary>
-        /// A unique identifier of the request
-        /// </summary>
         [DataMember]
-        public string RequestUuid;
-
-        /// <summary>
-        /// What concrete staion are we interested in
-        /// Empty = any station of given type
-        /// If both Type and Id are empty, all stations in the system are processed
-        /// </summary>
-        [DataMember]
-        public String MachineId;
-
-        /// <summary>
-        /// What application type are we intested in
-        /// Empty = any application type
-        /// </summary>
-        [DataMember]
-        public String ApplicationType;
-
-        /// <summary>
-        /// What concrete application are we intested in
-        /// Empty = any application of given type
-        /// If both Type and Id are empty, all apps as configured for the agents are processed
-        /// </summary>
-        [DataMember]
-        public String ApplicationId;
-
-        /// <summary>
-        /// Whatever parameters specifying the type of the data we are interested in;
-        /// Empty list = default
-        /// </summary>
-        [DataMember]
-        public Dictionary<String, String> Options;
+        public ProblemSnapshotRequest Request;
 
         public override string ToString()
         {
-            return string.Format("ProblemSnapshotRequest (MachId {0} AppType {1} AppId {2})", MachineId, ApplicationType, ApplicationId);
+            return string.Format("TakeProblemSnapshot {0}", Request );
         }
     }
 
-
-    /// <summary>
-    /// This is sent in response to ProblemSnapshotRequest
-    /// </summary>
-    [DataContract]
-    public class ProblemSnapshotResponse : Message
-    {
-
-        /// <summary>
-        /// what request this snapshot belongs to
-        /// </summary>
-        [DataMember]
-        public string RequestUuid;
-
-        [DataMember]
-        public String MachineId;
-
-        [DataMember]
-        public String ApplicationType;
-
-        [DataMember]
-        public String ApplicationId;
-
-        [DataMember]
-        public List<FilePayload> Files;
-    };
 
 }
